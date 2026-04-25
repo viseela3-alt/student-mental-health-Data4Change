@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✏️ CHANGE THIS: Update the project title -->
+  <title>Graphs · My Data Capstone Project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========== COLORS — keep these the same across all 4 pages ========== */
+    :root {
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ===== NAVIGATION (same on every page) ===== */
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 1rem 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 2rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    /* NOTE: "active" is on "Graphs" link on this page */
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* ===== EACH GRAPH IS A "GRAPH CARD" ===== */
+    .graph-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+
+    .graph-card img {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .graph-info {
+      padding: 1.5rem;
+    }
+
+    .graph-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .graph-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .graph-info p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION (same on every page — only change "active" class) ===== -->
+  <nav>
+    <!-- ✏️ CHANGE: Short project name -->
+    <a class="nav-brand" href="index.html">Capstone Project</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="graphs.html" class="active">Graphs</a>  <!-- active = current page -->
+      <a href="sources.html">Sources</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <h1>Graphs</h1>
+  </div>
+
+  <!-- ===== GRAPHS ===== -->
+  <div class="container">
+
+    <!-- ─── GRAPH 1 ─── -->
+    <div class="graph-card">
+      <!-- ✏️ CHANGE: Replace with your actual image file path -->
+      <!-- Put your images in a folder called "graphs" inside your project folder -->
+      <img src="graphs/scatter-plot.png" alt="Scatter plot of screen time vs GPA" />
+      <div class="graph-info">
+        <!-- ✏️ CHANGE: Graph title -->
+        <h2>Screen Time vs. GPA</h2>
+        <!-- ✏️ CHANGE: Explain what this graph shows and the answer to the question it corresponds to -->
+        <p>
+          This scatter plot shows the relationship between daily phone screen time (in hours)
+          and student GPA for all 500 participants. Each dot is one student. The downward trend
+          indicates a negative correlation — as screen time increases, GPA tends to decrease.
+          The line of best fit has a slope of −0.08 GPA points per hour of screen time.
+        </p>
+      </div>
+    </div>
+
+    <!-- ─── GRAPH 2 ─── -->
+    <div class="graph-card">
+      <!-- ✏️ CHANGE: Replace with your second graph image -->
+      <img src="graphs/bar-chart.png" alt="Bar chart of average GPA by screen time group" />
+      <div class="graph-info">
+        <!-- ✏️ CHANGE: Graph title -->
+        <h2>Average GPA by Screen Time Group</h2>
+        <!-- ✏️ CHANGE: Explain what this graph shows and the answer to the question it corresponds t -->
+        <p>
+          Students were grouped into four categories based on daily screen time:
+          under 2 hours, 2–4 hours, 4–6 hours, and over 6 hours. Students in the
+          lowest screen time group had the highest average GPA (3.6), while those
+          in the highest group averaged 3.1. The difference of 0.5 GPA points is
+          statistically significant (p &lt; 0.05).
+        </p>
+      </div>
+    </div>
+
+    <!-- ─── GRAPH 3 ─── -->
+    <div class="graph-card">
+      <!-- ✏️ CHANGE: Replace with your third graph image -->
+      <img src="graphs/boxplot.png" alt="Box plot comparing GPA distributions" />
+      <div class="graph-info">
+        <!-- ✏️ CHANGE: Graph title -->
+        <h2>GPA Distribution by School</h2>
+        <!-- ✏️ CHANGE: Explain what this graph shows and the answer to the question it corresponds t -->
+        <p>
+          Box plots comparing GPA distribution across the three participating schools.
+          All three schools show a similar pattern, suggesting the correlation between
+          screen time and GPA is consistent across different school environments,
+          not specific to one school's grading policy.
+        </p>
+      </div>
+    </div>
+
+  </div><!-- end .container -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    Created by Jane Smith · Data4Change · 2026
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✏️ CHANGE THIS: Replace with your project title (shows in browser tab) -->
+  <title>My Data Capstone Project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========== COLORS — change these to match your style ========== */
+    :root {
+      --accent: #2563eb;       /* main color used for links, highlights */
+      --accent-light: #eff6ff; /* light version used for backgrounds */
+      --text: #1e293b;         /* main text color */
+      --muted: #64748b;        /* lighter text for captions/labels */
+      --bg: #f8fafc;           /* page background */
+      --card: #ffffff;         /* card/section background */
+      --border: #e2e8f0;       /* borders and dividers */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ===== TOP NAVIGATION BAR ===== */
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 1rem 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 2rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    /* The "active" class highlights the current page link */
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ===== HERO SECTION (big intro at the top of home page) ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--accent-light) 0%, var(--card) 100%);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.2;
+      max-width: 700px;
+      margin: 0 auto 1.25rem;
+      color: var(--text);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+
+    .hero-btn:hover { opacity: 0.85; }
+
+    /* ===== MAIN CONTENT WRAPPER ===== */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* ===== SECTION HEADING STYLE ===== */
+    .section-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    /* ===== CARD (white box with shadow) ===== */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ===== STAT BOXES (shows key numbers at a glance) ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat-box {
+      background: var(--accent-light);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== FINDING CARDS (key takeaways) ===== */
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .finding-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .finding-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--accent);
+    }
+
+    .finding-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ===== FEATURED IMAGE ===== */
+    .featured-image {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <nav>
+    <!-- ✏️ CHANGE THIS: Replace with a short version of your project name -->
+    <a class="nav-brand" href="index.html">Capstone Project</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="graphs.html">Graphs</a>
+      <a href="sources.html">Sources</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <div class="hero">
+    <!-- ✏️ CHANGE THIS: Your class or subject name -->
+    <span class="hero-tag">Data4Change Final Project</span>
+
+    <!-- ✏️ CHANGE THIS: Your full project title -->
+    <h1>Correlation Between Screen Time and Academic Performance</h1>
+
+    <!-- ✏️ CHANGE THIS: One or two sentences summarizing what your project is about -->
+    <p>
+      An analysis of how daily phone usage affects GPA among high school students,
+      using survey data from 500 participants across 3 schools.
+    </p>
+
+    <a class="hero-btn" href="graphs.html">View Graphs →</a>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="container">
+    
+    <!-- PROBLEM STATEMENT -->
+    <div class="card">
+      <h2 class="section-heading">Problem Statement</h2>
+      <!-- ✏️ CHANGE THIS: Explain the question/problem your project tries to answer -->
+      <p>
+        With smartphones becoming central to teen life, many educators and parents
+        worry that excessive screen time is hurting academic outcomes. But is there
+        real data to support this? This project investigates whether there is a
+        measurable correlation between daily phone screen time and GPA among high
+        school students.
+      </p>
+    </div>
+
+    <!-- QUESTIONS -->
+    <h2 class="section-heading">Research Questions</h2>
+    <div class="findings-grid">
+      <!-- ✏️ CHANGE THESE: Replace with your own 3 findings -->
+      <div class="finding-card">
+        <h3>Question 1</h3>
+        <p>Does a person's education level influence whether they earn above $50K per year?</p>
+      </div>
+      <div class="finding-card">
+        <h3>Question 2</h3>
+        <p>Is there a correlation between age and income level across different occupations?</p>
+      </div>
+      <div class="finding-card">
+        <h3>Question 3</h3>
+        <p>Do demographic factors such as gender and race play a measurable role in income distribution?</p>
+      </div>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="card" style="margin-top: 2rem;">
+      <h2 class="section-heading">Conclusion</h2>
+      <!-- ✏️ CHANGE THIS: Write your conclusion — what did your analysis show? -->
+      <p>
+        The data supports a moderate negative correlation between recreational screen
+        time and academic performance. However, correlation does not equal causation —
+        other factors like study habits, sleep, and socioeconomic background likely
+        play a role. Future research should use longitudinal data to establish
+        stronger causal claims.
+      </p>
+    </div>
+
+  </div><!-- end .container -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <!-- ✏️ CHANGE THIS: Your name, class, and year -->
+    Created by Jane Smith · Data4Change · 2026
+  </footer>
+
+</body>
+</html>

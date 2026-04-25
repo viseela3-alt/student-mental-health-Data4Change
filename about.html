@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✏️ CHANGE THIS: Update the project title -->
+  <title>About</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========== COLORS — keep the same across all 4 pages ========== */
+    :root {
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 1rem 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 2rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* ===== PROFILE CARD ===== */
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    /* The circle avatar / initials icon */
+    .avatar {
+      min-width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .profile-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .profile-info .role {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .profile-info p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    /* Responsive: stack on small screens */
+    @media (max-width: 520px) {
+      .profile-card { flex-direction: column; }
+    }
+
+    /* ===== INFO CARDS ===== */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .info-card .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .info-card .value {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ===== PROCESS / STEPS SECTION ===== */
+    .process-step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .step-dot {
+      min-width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    .step-text h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .step-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ===== SECTION HEADING ===== */
+    .section-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-light);
+    }
+
+    /* ===== REFLECTION BLOCK ===== */
+    .reflection {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1.25rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <!-- ✏️ CHANGE: Short project name -->
+    <a class="nav-brand" href="index.html">Capstone Project</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="graphs.html">Graphs</a>
+      <a href="sources.html">Sources</a>
+      <a href="about.html" class="active">About</a>  <!-- active = current page -->
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <h1>About This Project</h1>
+    <p>Who made it, why it was made, and acknowledgements.</p>
+  </div>
+
+  <div class="container">
+
+    <!-- ─── STUDENT PROFILE ─── -->
+    <div class="profile-card">
+      <!-- ✏️ CHANGE: Replace "JS" with your actual initials -->
+      <div class="avatar">JS</div>
+      <div class="profile-info">
+        <!-- ✏️ CHANGE: Your full name -->
+        <h2>Jane Smith</h2>
+        <!-- ✏️ CHANGE: Your grade -->
+        <div class="role">11th Grade · Data4Change</div>
+        <!-- ✏️ CHANGE: Write 2–3 sentences about yourself (optional but nice!) -->
+        <p>
+          I'm a junior interested in data science and public health. I created this
+          project as part of the Data4Change course, exploring how technology
+          habits relate to academic performance among students my age.
+        </p>
+      </div>
+    </div>
+
+    <!-- ─── PROJECT INFO GRID ─── -->
+    <div class="info-grid">
+      <!-- ✏️ CHANGE: Fill in the actual details for each box -->
+      <div class="info-card">
+        <div class="label">Course</div>
+        <div class="value">Data4Change</div>
+      </div>
+      <div class="info-card">
+        <div class="label">Instructor</div>
+        <div class="value">Tulika Punia</div>
+      </div>
+      <div class="info-card">
+        <div class="label">Date Completed</div>
+        <!-- ✏️ CHANGE: When you finished the project -->
+        <div class="value">May 3, 2026</div>
+      </div>
+    </div>
+
+<!-- ─── WHY ─── -->
+    <h2 class="section-heading" style="margin-top: 2.5rem;">Why Did You Choose This Project</h2>
+    <div class="reflection">
+      I chose this project because income inequality is something that affects millions of
+      people yet is often misunderstood. I wanted to explore what factors — like education,
+      age, and occupation — actually influence whether someone earns above or below a certain
+      threshold. Data felt like the best way to cut through assumptions and look at the
+      patterns objectively. This topic also felt personally relevant, as conversations about
+      economic opportunity come up a lot in my community, and I wanted to back those
+      conversations with real numbers.
+    </div>
+
+    <!-- ─── ACKNOWLEDGEMENTS (optional) ─── -->
+    <h2 class="section-heading">Acknowledgements</h2>
+    <p style="color: var(--muted); font-size: 0.92rem; line-height: 2;">
+      Thank you to <a href="https://www.code4change.co/" target="_blank">Code4Change</a> and the entire 
+      team for the guidance and support throughout this project.
+    </p>
+
+  </div><!-- end .container -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <!-- ✏️ CHANGE: Your name, class, school, year -->
+    Created by Jane Smith · Data4Change · 2026
+  </footer>
+
+</body>
+</html>
