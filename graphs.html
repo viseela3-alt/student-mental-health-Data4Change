@@ -3,87 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Graphs · Student Mental Health</title>
+  <title>Graphs · Student Mental Health Analysis</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --navy: #0f2044;
-      --navy-mid: #1a3a6e;
-      --navy-light: #1e4d8c;
-      --gold: #c9a84c;
-      --gold-light: #f0d98a;
-      --white: #ffffff;
-      --off-white: #f4f6fb;
-      --text: #1a1a2e;
-      --muted: #5a6a85;
-      --border: #d0d9ea;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --bg: #f8fafc;
       --card: #ffffff;
+      --border: #e2e8f0;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--text); line-height: 1.7; }
-    nav { background: var(--navy); padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--gold); }
-    .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--white); text-decoration: none; padding: 1.1rem 0; letter-spacing: 0.02em; }
-    .nav-brand span { color: var(--gold); }
-    .nav-links { display: flex; }
-    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.65); font-size: 0.85rem; font-weight: 500; padding: 1.1rem 1.4rem; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 3px solid transparent; margin-bottom: -3px; transition: color 0.2s, border-color 0.2s; }
-    .nav-links a.active, .nav-links a:hover { color: var(--white); border-bottom-color: var(--gold); }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 1rem 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 2rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
 
     .page-header {
-      background: var(--navy);
-      padding: 3.5rem 3rem 3rem;
-      border-bottom: 3px solid var(--gold);
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
     }
-    .page-header-inner { max-width: 860px; margin: 0 auto; }
-    .page-header .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-    .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--white); }
 
-    .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+    .page-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
 
     .graph-card {
       background: var(--card);
       border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
       margin-bottom: 2.5rem;
-      display: grid;
-      grid-template-columns: 1fr;
     }
 
     .graph-card img {
       width: 100%;
       display: block;
-      border-bottom: 3px solid var(--navy);
+      border-bottom: 1px solid var(--border);
     }
 
-    .graph-info { padding: 1.75rem 2rem; }
+    .graph-info {
+      padding: 1.5rem;
+    }
 
-    .graph-number {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+    .graph-label {
+      font-size: 0.75rem;
+      font-weight: 600;
       text-transform: uppercase;
-      color: var(--gold);
+      letter-spacing: 0.08em;
+      color: var(--accent);
       margin-bottom: 0.4rem;
     }
 
     .graph-info h2 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 1.4rem;
-      color: var(--navy);
-      margin-bottom: 0.85rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.75rem;
     }
 
-    .graph-info p { color: var(--muted); font-size: 0.93rem; line-height: 1.85; }
+    .graph-info p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
 
-    footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 1.75rem 2rem; font-size: 0.82rem; letter-spacing: 0.04em; border-top: 3px solid var(--gold); }
-    footer span { color: var(--gold); }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
 
   <nav>
-    <a class="nav-brand" href="index.html">Student <span>Mental Health</span></a>
+    <a class="nav-brand" href="index.html">Capstone Project</a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="graphs.html" class="active">Graphs</a>
@@ -93,45 +152,49 @@
   </nav>
 
   <div class="page-header">
-    <div class="page-header-inner">
-      <div class="label">Data Visualizations</div>
-      <h1>Graphs</h1>
-    </div>
+    <h1>Graphs</h1>
+    <p>Three charts answering the detective questions about student mental health.</p>
   </div>
 
   <div class="container">
 
     <div class="graph-card">
-      <img src="graphs/gpa-vs-depression.png" alt="Bar chart of average GPA by depression status" />
+      <img src="Graphs/gpa-vs-depression.png" alt="Bar chart of average GPA by depression status" />
       <div class="graph-info">
-        <div class="graph-number">Question 01</div>
+        <div class="graph-label">Question 1</div>
         <h2>Average GPA: Students With vs. Without Depression</h2>
-        <p>This bar chart compares the average GPA of students who reported having depression versus those who did not. The results show whether academic performance is affected by depression, helping us understand if struggling students are also more likely to be experiencing mental health challenges.</p>
+        <p>
+          This bar chart compares the average GPA of students who reported having depression versus those who did not. The results show whether academic performance is affected by depression, helping us understand if struggling students are also more likely to be experiencing mental health challenges.
+        </p>
       </div>
     </div>
 
     <div class="graph-card">
-      <img src="graphs/depression-by-year.png" alt="Bar chart of depression rate by year of study" />
+      <img src="Graphs/depression-by-year.png" alt="Bar chart of depression rate by year of study" />
       <div class="graph-info">
-        <div class="graph-number">Question 02</div>
+        <div class="graph-label">Question 2</div>
         <h2>Depression Rate by Year of Study</h2>
-        <p>This bar chart shows the percentage of students reporting depression broken down by their year of study (Year 1 through Year 4). It reveals which stage of university life is most associated with depression, which could help schools target mental health support more effectively.</p>
+        <p>
+          This bar chart shows the percentage of students reporting depression broken down by their year of study (Year 1 through Year 4). It reveals which stage of university life is most associated with depression, which could help schools target mental health support more effectively.
+        </p>
       </div>
     </div>
 
     <div class="graph-card">
-      <img src="graphs/anxiety-depression-overlap.png" alt="Grouped bar chart showing overlap between anxiety and depression" />
+      <img src="Graphs/anxiety-depression-overlap.png" alt="Grouped bar chart showing overlap between anxiety and depression" />
       <div class="graph-info">
-        <div class="graph-number">Question 03</div>
+        <div class="graph-label">Question 3</div>
         <h2>Overlap Between Anxiety and Depression in Students</h2>
-        <p>This grouped bar chart compares students who have anxiety versus those who do not, and within each group shows how many also have depression. The chart answers whether anxiety and depression tend to occur together, revealing the relationship between these two common mental health conditions in students.</p>
+        <p>
+          This grouped bar chart compares students who have anxiety versus those who do not, and within each group shows how many also have depression. The chart answers whether anxiety and depression tend to occur together, revealing the relationship between these two common mental health conditions in students.
+        </p>
       </div>
     </div>
 
   </div>
 
   <footer>
-    Created by <span>Vivaan Seela</span> &nbsp;·&nbsp; Data4Change &nbsp;·&nbsp; 2026
+    Created by Vivaan Seela · Data4Change · 2026
   </footer>
 
 </body>
